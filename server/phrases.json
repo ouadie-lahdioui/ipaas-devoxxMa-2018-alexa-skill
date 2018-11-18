@@ -3,6 +3,7 @@
   "REPROMPT": "I'm still waiting for your question.",
   "HELP": "You can ask questions such as, remember me to do something, how can i help you ?",
   "GOODBYE": "Goodbye !",
-  "ON_SUCCESS": "Well done. i successfully saved the task. Crazy!"
+  "ON_SUCCESS": "Well done. i successfully saved the task. Crazy!",
+  "TECHNICAL_ERROR": "Sorry, something was wrong in the server. can repeat ask me again ?",
+  "SLOT_NOT_FOUNDED": "I'm sorry, i currently do not know. can you repeat your question in other words ?"
 }
-

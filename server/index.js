@@ -36,27 +36,28 @@ const handlers = {
         this.emit("SessionEndedRequest");
     },
     "planify": function() {
-        console.log(JSON.stringify(this.event.request.intent));
+        console.log(JSON.stringify(`intent= ${JSON.stringify(this.event.request.intent)}`));
 
         const taskSlot = this.event.request.intent.slots.task;
 
         if (taskSlot && taskSlot.value) {
             let task = taskSlot.value.toLowerCase();
+            let body = { id, task};
+
+            console.log(JSON.stringify(`body = ${this.event.request.intent(body)}`));
 
             unirest
                 .post(WEBHOOK)
-                .send({ id, task})
-                .headers({"Content-Type": "application/json"})
+                .type('json')
+                .send(body)
                 .end( response => {
-                    console.log(JSON.stringify(response));
-                    this.emit(":tell", PHRASES.ON_SUCCESS);
+                    console.log(`response=${JSON.stringify(response)}`);
+                    this.emit(":ask", response.statusCode != 200 ? PHRASES.ON_SUCCESS : PHRASES.TECHNICAL_ERROR);
                 });
 
         } else {
-            this.attributes.speechOutput = "I'm sorry, i currently do not know";
-            this.attributes.repromptSpeech = "Can you repeat your question in other words ?";
-
-            this.emit(":ask", this.attributes.speechOutput, this.attributes.repromptSpeech);
+            this.attributes.speechOutput = PHRASES.SLOT_NOT_FOUNDED;
+            this.emit(":ask", this.attributes.speechOutput);
         }
 
     }

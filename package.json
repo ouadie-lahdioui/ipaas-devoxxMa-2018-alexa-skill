@@ -1,0 +1,22 @@
+{
+  "name": "ipaas-devoxxma-2018-alexa-skill",
+  "version": "1.0.0",
+  "description": "Demo application of the talk : integration platform as a service for no techos",
+  "main": "index.js",
+  "scripts": {
+    "package": "cp package.json server/ && cd server && npm install && npm run zip",
+    "zip": "zip -r info-trafic-alexa-skill-lambda.zip *"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ipaas-devoxxMa-2018-alexa-skill/BDX-IO-2017-Alexa.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ouadie-lahdioui/ipaas-devoxxMa-2018-alexa-skill/issues"
+  },
+  "dependencies": {
+    "alexa-sdk": "^1.0.19",
+    "unirest": "^0.5.1"
+  }
+}

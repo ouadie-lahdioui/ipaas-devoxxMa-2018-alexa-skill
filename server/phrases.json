@@ -1,0 +1,8 @@
+{
+  "WELCOME": "Welcome to your planner! i'm the demo application of the talk integration platform as a service for no techos. Now, how can i help you ?",
+  "REPROMPT": "I'm still waiting for your question.",
+  "HELP": "You can ask questions such as, remember me to do something, how can i help you ?",
+  "GOODBYE": "Goodbye !",
+  "ON_SUCCESS": "Well done. i successfully saved the task. Crazy!"
+}
+

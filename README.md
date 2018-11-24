@@ -14,12 +14,10 @@ That will generate a new zip file inside the server folder including all the nec
 
 You can said for example : 
 ````
-Alexa, open my planner
-Alexa, ask my planner to add “……..”
-Alexa, tell my planner to put “……..”
-Alexa, ask my planner to remember me “……..”
-Alexa, tell my planner to add message from alexa
-
+Alexa, open my transaction
+Alexa, ask my transaction to add “……..”
+Alexa, tell my transaction to put “……..”
+Alexa, tell my transaction to add message from alexa
 ````
 
 

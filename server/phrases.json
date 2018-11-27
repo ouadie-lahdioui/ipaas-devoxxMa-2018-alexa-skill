@@ -1,5 +1,5 @@
 {
-  "WELCOME": "Welcome to your transaction! i'm the demo application of yout talk at devoxx morocco. Now, how can i help you ?",
+  "WELCOME": "Welcome to your transaction! i'm the demo application of your talk at devoxx morocco. Now, how can i help you ?",
   "REPROMPT": "I'm still waiting for your question.",
   "HELP": "You can ask questions such as, remember me to do something, how can i help you ?",
   "GOODBYE": "Goodbye !",

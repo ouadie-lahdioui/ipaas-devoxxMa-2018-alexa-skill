@@ -5,5 +5,6 @@
   "GOODBYE": "Goodbye !",
   "ON_SUCCESS": "Your transaction has been successfully processed. Thank you.",
   "TECHNICAL_ERROR": "Sorry, something was wrong in the server. can repeat ask me again ?",
-  "SLOT_NOT_FOUNDED": "I'm sorry, i currently do not know. can you repeat your question in other words ?"
+  "SLOT_NOT_FOUNDED": "I'm sorry, i currently do not know. can you repeat your question in other words ?",
+  "CONFIRMATION_DENIED": "No problem, i still here for help"
 }

@@ -4,6 +4,7 @@ const Alexa = require("alexa-sdk");
 const unirest = require('unirest');
 
 const PHRASES = require("./phrases");
+
 const DEFAULT_WEBHOOK = "https://i-webhooktodbpsql-proj350166.6a63.fuse-ignite.openshiftapps.com/webhook/iasaqOSXL9Q0YNZm6eJqO8L2Tx2ucsTlm4HKJ7DGsRkqLB2cip";
 const WEBHOOK = process.env.WEBHOOK || DEFAULT_WEBHOOK;
 
@@ -35,21 +36,30 @@ const handlers = {
     "AMAZON.CancelIntent": function () {
         this.emit("SessionEndedRequest");
     },
-    "planify": function() {
-        console.log(JSON.stringify(`intent= ${JSON.stringify(this.event.request.intent)}`));
+    "addTransaction": function() {
+        console.log(JSON.stringify(`intent= ${JSON.stringify(this.event.request)}`));
+        console.log(JSON.stringify(`dialogState= ${this.event.request.dialogState}`));
 
-        if (this.event.request.dialogState != "COMPLETED"){
-            // return a Dialog.Delegate directive with no updatedIntent property.
+        if (this.event.request.dialogState === 'STARTED'){
+            console.log(JSON.stringify(` STARTED dialogState`));
+            let updatedIntent = this.event.request.intent;
+            this.emit(':delegate', updatedIntent);
+        } else if (this.event.request.dialogState != 'COMPLETED'){
+            console.log(JSON.stringify(` != COMPLETED dialogState`));
             this.emit(':delegate');
         } else {
-            const taskSlot = this.event.request.intent.slots.task;
+            let intent = this.event.request.intent;
+            const transactionSlot = intent.slots.transaction;
 
-            if (taskSlot && taskSlot.value) {
-                let task = taskSlot.value.toLowerCase();
+            console.log(JSON.stringify(` COMPLETE dialogState ${intent.confirmationStatus}`));
+
+            if (intent.confirmationStatus === 'DENIED') {
+                this.emit(":tell", PHRASES.CONFIRMATION_DENIED);
+            } else {
+
+                let task = transactionSlot.value.toLowerCase();
 
                 let body = {task};
-
-                console.log(JSON.stringify(`body = ${this.event.request.intent(body)}`));
 
                 unirest
                     .post(WEBHOOK)
@@ -60,9 +70,6 @@ const handlers = {
                         this.emit(":ask", response.statusCode != 200 ? PHRASES.ON_SUCCESS : PHRASES.TECHNICAL_ERROR);
                     });
 
-            } else {
-                this.attributes.speechOutput = PHRASES.SLOT_NOT_FOUNDED;
-                this.emit(":ask", this.attributes.speechOutput);
             }
         }
     }
